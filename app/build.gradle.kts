@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -50,7 +52,14 @@ android {
 }
 
 dependencies {
+    implementation("com.google.dagger:hilt-android:2.46.1")
+    implementation(libs.androidx.navigation.compose)
+    kapt("com.google.dagger:hilt-compiler:2.46.1")
 
+    // Retrofit
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    //Coil
+    implementation("io.coil-kt:coil-compose:1.4.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -58,7 +67,7 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
+    implementation("androidx.compose.material3:material3-android:1.2.0-rc01")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
