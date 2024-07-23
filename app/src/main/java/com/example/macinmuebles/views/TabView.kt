@@ -9,11 +9,12 @@ import com.example.macinmuebles.components.BottomNav
 import com.example.macinmuebles.components.MainTopBar
 import com.example.macinmuebles.navigation.NavManager
 import com.example.macinmuebles.navigation.Routes
+import com.example.macinmuebles.viewModel.PostViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun TabView() {
+fun TabView(viewModel: PostViewModel) {
     val navController = rememberNavController()
     val navigationRoutes = listOf(
         Routes.HomeView,
@@ -26,16 +27,16 @@ fun TabView() {
     }
 
     Scaffold(
-        topBar = {
-            MainTopBar(
-                title = "MAC Inmuebles",
-                navController,
-                onClickBackButton = { onClickBackButton() }) {}
-        },
+        //topBar = {
+        //    MainTopBar(
+        //        title = "MAC Inmuebles",
+        //        navController,
+        //        onClickBackButton = { onClickBackButton() }) {}
+        //},
         bottomBar = {
             BottomNav(navController, navigationRoutes)
         }
     ) { pad ->
-        NavManager(navController, pad)
+        NavManager(navController, viewModel, pad)
     }
 }

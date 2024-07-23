@@ -7,15 +7,16 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.macinmuebles.viewModel.PostViewModel
 import com.example.macinmuebles.views.HomeView
 import com.example.macinmuebles.views.SearchView
 import com.example.macinmuebles.views.SettingsView
 
 @Composable
-fun NavManager(navHostController: NavHostController, pad: PaddingValues){
+fun NavManager(navHostController: NavHostController, viewModel: PostViewModel, pad: PaddingValues){
     NavHost(navController = navHostController, startDestination = Routes.HomeView.route){
         composable(Routes.HomeView.route){
-            HomeView()
+            HomeView(viewModel, navHostController, pad)
         }
         composable(Routes.SearchView.route){
             SearchView()
