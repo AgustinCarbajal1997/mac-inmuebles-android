@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Place
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -30,6 +31,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.layout
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
@@ -40,6 +42,7 @@ import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.example.macinmuebles.model.PostModel
 import com.example.macinmuebles.viewModel.PostViewModel
+import com.example.macinmuebles.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -51,6 +54,7 @@ fun PostCard(post: PostModel, navController: NavController, viewModel: PostViewM
         onClick = {
             //viewModel.onSelectPost(post)
             //navController.navigate("DetailPostView")
+                  println("Se apreto")
         },
         //elevation = CardDefaults.cardElevation(
         //    defaultElevation = 6.dp
@@ -88,12 +92,12 @@ fun PostCard(post: PostModel, navController: NavController, viewModel: PostViewM
                         .clip(RoundedCornerShape(20.dp))
                         .background(Color.White)
                         .fillMaxWidth()
-                        .padding(vertical = 20.dp, horizontal = 16.dp)
+                        .padding(vertical = 10.dp, horizontal = 16.dp)
 
 
                 ) {
                     Row(
-                        verticalAlignment = Alignment.Top
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
                         Column(
                             Modifier
@@ -107,15 +111,17 @@ fun PostCard(post: PostModel, navController: NavController, viewModel: PostViewM
                             )
                             Row(
                                 modifier = Modifier
-                                    .padding(top = 8.dp),
+                                    .padding(top = 4.dp),
                                 horizontalArrangement = Arrangement.Center,
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                Icon(
-                                    imageVector = Icons.Default.Place,
-                                    contentDescription = "place",
-                                    tint = MaterialTheme.colorScheme.primary,
-                                    modifier = Modifier.size(20.dp)
+                                Image(
+                                    painterResource(id = R.drawable.ubicacion),
+                                    contentDescription = null,
+                                    contentScale = ContentScale.Fit,
+                                    modifier = Modifier
+                                        .width(30.dp)
+                                        .height(30.dp)
                                 )
                                 Text(
                                     text = post.locality,
@@ -126,19 +132,18 @@ fun PostCard(post: PostModel, navController: NavController, viewModel: PostViewM
                             }
 
                         }
-                        Text(
-                            modifier = Modifier
-                                .weight(1f),
-                            textAlign = TextAlign.Right,
-                            text = if (post.price.contains(
-                                    "consulte",
-                                    true
-                                )
-                            ) "CONSULTAR" else post.price,
-                            color = MaterialTheme.colorScheme.primary,
-                            fontWeight = FontWeight.SemiBold,
-                            fontSize = 14.sp,
-                        )
+                        Column(
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.KeyboardArrowRight,
+                                contentDescription = "enter",
+                                tint = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier.size(40.dp)
+                            )
+                        }
+
                     }
                 }
             }

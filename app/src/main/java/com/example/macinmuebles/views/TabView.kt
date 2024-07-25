@@ -33,10 +33,11 @@ fun TabView(viewModel: PostViewModel) {
         //        navController,
         //        onClickBackButton = { onClickBackButton() }) {}
         //},
-        bottomBar = {
-            BottomNav(navController, navigationRoutes)
-        }
+        //bottomBar = {
+        //
+        //}
     ) { pad ->
         NavManager(navController, viewModel, pad)
+        BottomNav(navController, navigationRoutes)
     }
 }
