@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.macinmuebles.viewModel.PostViewModel
+import com.example.macinmuebles.views.DetailPostView
 import com.example.macinmuebles.views.HomeView
 import com.example.macinmuebles.views.SearchView
 import com.example.macinmuebles.views.SettingsView
@@ -24,9 +25,9 @@ fun NavManager(navHostController: NavHostController, viewModel: PostViewModel, p
         composable(Routes.SettingsView.route){
             SettingsView()
         }
-        //composable(Routes.DetailPostView.route){
-        //    DetailPostView(viewModel, pad)
-        //}
+        composable(Routes.DetailPostView.route){
+            DetailPostView(viewModel, pad)
+        }
         //composable(Routes.SearchView.route){
         //    SearchView(pad, viewModel, navHostController)
         //}

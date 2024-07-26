@@ -54,6 +54,7 @@ android {
 dependencies {
     implementation("com.google.dagger:hilt-android:2.46.1")
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.accompanist.pager)
     kapt("com.google.dagger:hilt-compiler:2.46.1")
 
     // Retrofit

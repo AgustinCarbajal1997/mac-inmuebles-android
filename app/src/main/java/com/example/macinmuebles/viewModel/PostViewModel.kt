@@ -15,8 +15,10 @@ import javax.inject.Inject
 @HiltViewModel
 class PostViewModel @Inject constructor(private val repo: PostRepository): ViewModel(){
     private val _posts = MutableStateFlow<List<PostModel>>(emptyList())
+    private val _selectedPost = MutableStateFlow<PostModel>(PostModel())
     private val _loading = MutableStateFlow<Boolean>(false)
     val posts = _posts.asStateFlow()
+    val selectedPost = _selectedPost.asStateFlow()
     val loading = _loading.asStateFlow()
 
     init {
@@ -33,5 +35,9 @@ class PostViewModel @Inject constructor(private val repo: PostRepository): ViewM
                 _loading.value = false
             }
         }
+    }
+
+    fun onSelectPost(post: PostModel){
+        _selectedPost.value = post
     }
 }
