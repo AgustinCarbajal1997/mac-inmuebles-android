@@ -4,6 +4,7 @@ data class PostModel(
     val id: String = "",
     val title: String = "",
     val imageFront: List<String> = emptyList(),
+    val images: List<String> = emptyList(),
     val locality: String = "",
     val neighborhood: String = "",
     val sanitizedHtml: String = "",

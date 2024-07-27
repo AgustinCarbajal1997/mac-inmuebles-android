@@ -28,13 +28,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.example.macinmuebles.R
+import com.example.macinmuebles.components.SliderDetailPost
 import com.example.macinmuebles.viewModel.PostViewModel
+import com.google.accompanist.pager.ExperimentalPagerApi
 
 @Composable
 fun DetailPostView(viewModel: PostViewModel, pad: PaddingValues) {
     ContentDetailPostView(viewModel, pad)
 }
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun ContentDetailPostView(viewModel: PostViewModel, pad: PaddingValues) {
     val post by viewModel.selectedPost.collectAsState()
@@ -44,19 +47,7 @@ fun ContentDetailPostView(viewModel: PostViewModel, pad: PaddingValues) {
         modifier = Modifier
             .verticalScroll(scroll)
     ) {
-        val image =
-            rememberImagePainter(data = post.imageFront[0])
-        Image(
-            painter = image,
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .fillMaxWidth()
-                .aspectRatio(16f / 12f)
-                .padding(16.dp)
-                .clip(RoundedCornerShape(20.dp))
-
-        )
+        SliderDetailPost(imageSlider = post.images)
         Column(
             modifier = Modifier
                 .padding(horizontal = 16.dp)
